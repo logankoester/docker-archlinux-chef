@@ -11,6 +11,9 @@ ENV CHEF_VERSION 11.16.4
 RUN pacman -Syy --noprogressbar
 RUN pacman pacman -S --noprogressbar --noconfirm --needed wget base-devel expect git
 
+RUN mkdir -p /root/build
+WORKDIR /root/build
+
 RUN wget https://aur.archlinux.org/packages/ru/ruby-bundler/ruby-bundler.tar.gz
 RUN  tar -xzvf ruby-bundler.tar.gz
 RUN (cd ruby-bundler; makepkg -s -f --asroot --noconfirm --noprogressbar)
@@ -27,8 +30,9 @@ COPY omnibus-chef-git/PKGBUILD omnibus-chef-git/PKGBUILD
 
 RUN (cd omnibus-chef-git; sudo makepkg -s -f --asroot --noconfirm --noprogressbar)
 
-COPY install_chef.sh install_chef.sh
-RUN chmod +x install_chef.sh
-RUN install_chef.sh
+COPY install_chef.sh /root/build/install_chef.sh
+RUN chmod +x /root/build/install_chef.sh
+RUN /root/build/install_chef.sh
 
 RUN rm -f /etc/gitconfig
+RUN rm -rf /root/build
