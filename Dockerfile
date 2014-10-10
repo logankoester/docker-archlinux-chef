@@ -35,4 +35,5 @@ RUN chmod +x /root/build/install_chef.sh
 RUN /root/build/install_chef.sh
 
 RUN rm -f /etc/gitconfig
+RUN rm -f /var/lib/pacman/db.lck
 RUN rm -rf /root/build
