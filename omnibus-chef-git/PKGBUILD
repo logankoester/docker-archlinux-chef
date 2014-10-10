@@ -49,9 +49,10 @@ prepare() {
   pushd "$srcdir/$_pkgname"
     msg 'Preparing bundle...'
     bundle install --binstubs
+    bundle update omnibus
     wget https://github.com/opscode/omnibus/pull/367.patch
     git apply --directory=$(bundle show omnibus) --verbose 367.patch
-    #bundle update omnibus-software omnibus
+    # bundle update omnibus-software omnibus
     bundle exec omnibus clean chef
   popd
 
