@@ -9,7 +9,7 @@ MAINTAINER Logan Koester <logan@logankoester.com>
 ENV CHEF_VERSION 11.16.4
 
 RUN pacman -Syy --noprogressbar
-RUN pacman pacman -S --noprogressbar --noconfirm --needed wget base-devel expect git
+RUN pacman -S --noprogressbar --noconfirm --needed wget base-devel expect git
 
 RUN mkdir -p /root/build
 WORKDIR /root/build
