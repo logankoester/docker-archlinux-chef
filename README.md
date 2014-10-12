@@ -1,8 +1,7 @@
-# docker-archlinux-chef
+# docker-archlinux-chef [![Docker Repository on Quay.io](https://quay.io/repository/logankoester/archlinux-chef/status "Docker Repository on Quay.io")](https://quay.io/repository/logankoester/archlinux-chef)
 
 > Arch Linux with [Chef](https://www.getchef.com/) installed from AUR package [omnibus-chef-git](https://aur.archlinux.org/packages/omnibus-chef-git)
 
-[![Docker Repository on Quay.io](https://quay.io/repository/logankoester/archlinux-chef/status "Docker Repository on Quay.io")](https://quay.io/repository/logankoester/archlinux-chef)
 [![DockerCI](http://dockeri.co/image/logankoester/archlinux-chef)](https://registry.hub.docker.com/u/logankoester/archlinux-chef/)
 
 ## Install
