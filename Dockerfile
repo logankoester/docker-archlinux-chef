@@ -25,9 +25,6 @@ RUN git config --system user.name "Logan Koester"
 RUN wget https://aur.archlinux.org/packages/om/omnibus-chef-git/omnibus-chef-git.tar.gz
 RUN tar -xzvf omnibus-chef-git.tar.gz
 
-# Workaround until https://github.com/opscode/omnibus/pull/367 is released
-# COPY omnibus-chef-git/PKGBUILD /root/build/omnibus-chef-git/PKGBUILD
-
 RUN (cd omnibus-chef-git; sudo makepkg -s -f --asroot --noconfirm --noprogressbar)
 
 COPY install_chef.sh /root/build/install_chef.sh
