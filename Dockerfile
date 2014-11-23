@@ -15,12 +15,11 @@ RUN mkdir -p /root/build
 WORKDIR /root/build
 
 RUN wget https://aur.archlinux.org/packages/ru/ruby-bundler/ruby-bundler.tar.gz
-RUN  tar -xzvf ruby-bundler.tar.gz
+RUN tar -xzvf ruby-bundler.tar.gz
 RUN (cd ruby-bundler; makepkg -s -f --asroot --noconfirm --noprogressbar)
 RUN pacman -U --noconfirm ./ruby-bundler/ruby-bundler-*.pkg.tar.xz
 
-RUN git config --system user.email "logan@logankoester.com"
-RUN git config --system user.name "Logan Koester"
+RUN git config --system user.email "logan@logankoester.com" && git config --system user.name "Logan Koester"
 
 RUN wget https://aur.archlinux.org/packages/om/omnibus-chef-git/omnibus-chef-git.tar.gz
 RUN tar -xzvf omnibus-chef-git.tar.gz
