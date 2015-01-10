@@ -5,7 +5,7 @@
 
 FROM logankoester/archlinux
 MAINTAINER Logan Koester <logan@logankoester.com>
-ENV CHEF_VERSION=12.0.3
+ENV CHEF_VERSION 12.0.3
 
 # Prepare the system
 USER root
