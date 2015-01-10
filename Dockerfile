@@ -1,35 +1,34 @@
 # archlinux-chef
-# VERSION 0.1.0
+# VERSION 1.0.0
 #
-# Arch Linux with Chef installed from AUR package omnibus-chef-git
+# Arch Linux with Chef installed system-wide from Rubygems
 
 FROM logankoester/archlinux
 MAINTAINER Logan Koester <logan@logankoester.com>
+ENV CHEF_VERSION=12.0.3
 
-ENV CHEF_VERSION 11.16.4
+# Prepare the system
+USER root
+RUN pacman -S --noprogressbar --noconfirm --needed wget base-devel
 
-RUN pacman -Syy --noprogressbar
-RUN pacman -S --noprogressbar --noconfirm --needed wget base-devel expect git
+RUN mkdir -p /tmp/build
+RUN chown nobody:nobody -R /tmp/build && \
+  chmod 775 -R /tmp/build && \
+  echo "nobody ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 
-RUN mkdir -p /root/build
-WORKDIR /root/build
+# Install ruby-bundler from AUR
+USER nobody
+WORKDIR /tmp/build
+RUN wget https://aur.archlinux.org/packages/ru/ruby-bundler/ruby-bundler.tar.gz && \
+  tar -xzvf ruby-bundler.tar.gz
+WORKDIR /tmp/build/ruby-bundler
+RUN makepkg -i -s -f --noconfirm --noprogressbar
 
-RUN wget https://aur.archlinux.org/packages/ru/ruby-bundler/ruby-bundler.tar.gz
-RUN tar -xzvf ruby-bundler.tar.gz
-RUN (cd ruby-bundler; makepkg -s -f --asroot --noconfirm --noprogressbar)
-RUN pacman -U --noconfirm ./ruby-bundler/ruby-bundler-*.pkg.tar.xz
+USER root
+WORKDIR /
+RUN gem install chef --version $CHEF_VERSION --no-user-install
 
-RUN git config --system user.email "logan@logankoester.com" && git config --system user.name "Logan Koester"
-
-RUN wget https://aur.archlinux.org/packages/om/omnibus-chef-git/omnibus-chef-git.tar.gz
-RUN tar -xzvf omnibus-chef-git.tar.gz
-
-RUN (cd omnibus-chef-git; sudo makepkg -s -f --asroot --noconfirm --noprogressbar)
-
-COPY install_chef.sh /root/build/install_chef.sh
-RUN chmod +x /root/build/install_chef.sh
-RUN /root/build/install_chef.sh
-
-RUN rm -f /etc/gitconfig
-RUN rm -f /var/lib/pacman/db.lck
-RUN rm -rf /root/build
+# Clean up
+RUN rm -f /var/lib/pacman/db.lck && \
+  rm -rf /tmp/build && \
+  sed -i '/nobody ALL=(ALL) NOPASSWD: ALL/d' /etc/sudoers
