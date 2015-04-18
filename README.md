@@ -26,6 +26,10 @@ Be careful if you decide to do this, since package updates might break your imag
 
 ## Changelog
 
+### 1.0.1
+
+  * Updates default CHEF_VERSION to 12.2.1
+
 ### 1.0.0
 
   * Chef is now installed through Rubygems (system-wide) instead of Omnibus. This was prompted
