@@ -26,6 +26,10 @@ Be careful if you decide to do this, since package updates might break your imag
 
 ## Changelog
 
+### 1.1.0
+
+  * Updates default CHEF_VERSION to 12.3.0
+
 ### 1.0.1
 
   * Updates default CHEF_VERSION to 12.2.1

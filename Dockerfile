@@ -1,11 +1,11 @@
 # archlinux-chef
-# VERSION 1.0.1
+# VERSION 1.1.0
 #
 # Arch Linux with Chef installed system-wide from Rubygems
 
 FROM logankoester/archlinux
 MAINTAINER Logan Koester <logan@logankoester.com>
-ENV CHEF_VERSION 12.2.1
+ENV CHEF_VERSION 12.3.0
 
 # Prepare the system
 USER root
