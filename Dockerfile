@@ -1,11 +1,11 @@
 # archlinux-chef
-# VERSION 1.1.0
+# VERSION 1.2.0
 #
 # Arch Linux with Chef installed system-wide from Rubygems
 
 FROM logankoester/archlinux
 MAINTAINER Logan Koester <logan@logankoester.com>
-ENV CHEF_VERSION 12.3.0
+ENV CHEF_VERSION 12.4.1
 
 # Prepare the system
 USER root
@@ -19,7 +19,7 @@ RUN chown nobody:nobody -R /tmp/build && \
 # Install ruby-bundler from AUR
 USER nobody
 WORKDIR /tmp/build
-RUN wget https://aur.archlinux.org/packages/ru/ruby-bundler/ruby-bundler.tar.gz && \
+RUN wget https://aur.archlinux.org/cgit/aur.git/snapshot/ruby-bundler.tar.gz && \
   tar -xzvf ruby-bundler.tar.gz
 WORKDIR /tmp/build/ruby-bundler
 RUN makepkg -i -s -f --noconfirm --noprogressbar
