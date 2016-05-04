@@ -52,4 +52,4 @@ Be careful if you decide to do this, since package updates might break your imag
 
 ## License
 
-Copyright (c) 2014-2015 Logan Koester. Released under the MIT license. See `LICENSE` file for details.
+Copyright (c) 2014-2016 Logan Koester. Released under the MIT license. See `LICENSE` file for details.
